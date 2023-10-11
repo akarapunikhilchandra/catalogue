@@ -32,7 +32,7 @@ pipeline {
                     protocol: 'http',
                     nexusUrl: 'http://52.87.248.172:8081/',
                     groupId: 'com.roboshop',
-                    version: '1.0.0',
+                    version: '1.0.1',
                     repository: 'catalogue',
                     credentialsId: 'nexus-auth',
                     artifacts: [
