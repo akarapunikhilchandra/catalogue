@@ -6,11 +6,19 @@ pipeline {
                 sh 'npm install'
             }
         }
+
         stage('Unit Test') {
             steps {
                 echo "unit test is done here"
             }
         } 
+        // sonar-scanner command expect sonar-project.properties should be available 
+        // stage('Sonar Scan') {
+        //     steps {
+        //         sh 'ls -ltr'
+        //         sh 'sonar-scanner'
+        //     }
+        // }
         stage('Build'){
             steps {
                 sh 'ls -ltr'
@@ -36,23 +44,20 @@ pipeline {
                  )
             }
         }
-        // sonar-scanner command expect sonar-project.properties should be available 
-        // stage('Sonar Scan') {
-        //     steps {
-        //         sh 'ls -ltr'
-        //         sh 'sonar-scanner'
-        //     }
-        // }
-        stage('deploy') {
+
+        stage('Deploy') {
             steps {
-                echo "deployment"
-            }
-        }
-        post{
-            always{
-                echo 'cleaning up workspace'
-                deleteDir()
+                echo "Deployment"
             }
         }
     }
+
+    post{
+        always{
+            echo 'cleaning up workspace'
+            deleteDir()
+        }
+    }
 }
+        
+        
