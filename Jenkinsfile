@@ -1,50 +1,50 @@
 pipeline {
-    agent { node { label 'AGENT-1'} }
+    agent { node { label 'AGENT-1' } }
     stages {
-        stage('Install Dependencies') {
+        stage('Install depdencies') {
             steps {
                 sh 'npm install'
             }
         }
-
-        stage('Unit Test') {
+        stage('Unit test') {
             steps {
-                echo "unit test is done here"
+                echo "unit testing is done here"
             }
-        } 
-        // sonar-scanner command expect sonar-project.properties should be available 
+        }
+        //sonar-scanner command expect sonar-project.properties should be available
         // stage('Sonar Scan') {
         //     steps {
         //         sh 'ls -ltr'
         //         sh 'sonar-scanner'
         //     }
         // }
-        stage('Build'){
+        stage('Build') {
             steps {
                 sh 'ls -ltr'
                 sh 'zip -r catalogue.zip ./* --exclude=.git --exclude=.zip'
             }
         }
-        stage('publish artifact'){
+        stage('Publish Artifact') {
             steps {
-                 nexusArtifactUploader(
-                    nexusVersion: 'nexus',
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: 'http://52.87.248.172:8081/',
+                    nexusUrl: '52.87.248.172:8081/',
                     groupId: 'com.roboshop',
-                    version: '1.0.1',
+                    version: '1.0.0',
                     repository: 'catalogue',
                     credentialsId: 'nexus-auth',
                     artifacts: [
                         [artifactId: 'catalogue',
-                         classifier: '',
-                         file: 'catalogue.zip',
-                         type: 'zip']
+                        classifier: '',
+                        file: 'catalogue.zip',
+                        type: 'zip']
                     ]
-                 )
+                )
             }
         }
 
+        
         stage('Deploy') {
             steps {
                 echo "Deployment"
@@ -59,5 +59,3 @@ pipeline {
         }
     }
 }
-        
-        
