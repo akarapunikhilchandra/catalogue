@@ -48,11 +48,11 @@ pipeline {
                 echo "deployment"
             }
         }
-        post{
+    post{
             always{
                 echo 'cleaning up workspace'
                 deleteDir()
             }
-        }
+        }    
     }
 }
