@@ -64,7 +64,7 @@ pipeline {
                 echo "package version: $packageVersion"
             }
         }
-        stage('Deploy') {
+        stage('D') {
             steps {
                 echo "Deployment"
             }
@@ -79,7 +79,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deployment"
-                build job: '../catelogue-deploy', wait: true
+                build job: "../catelogue-deploy", wait: true
             }
         }
     
