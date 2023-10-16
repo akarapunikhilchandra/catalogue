@@ -14,7 +14,6 @@ pipeline {
                 }
             }
         }
-    stages {
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -66,14 +65,12 @@ pipeline {
         }
     }
 
-        post{
-            always{
-                echo 'cleaning up workspace'
-                deleteDir()
-            }
+    post{
+        always{
+            echo 'cleaning up workspace'
+            deleteDir()
         }
-    }   
-
+    }
 }
 
         
