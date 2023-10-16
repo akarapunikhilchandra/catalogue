@@ -13,8 +13,6 @@ pipeline {
                 echo "Hello ${params.version}"
             }
         }
-    }
-    stages {
         stage('Get version'){
             steps{
                 script{
