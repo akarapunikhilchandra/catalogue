@@ -4,6 +4,16 @@ pipeline {
         //here if you create any variable you will have global access, since it is environment no need of def
         packageVersion = ''
     }
+    parameters {
+        string(name: 'version', defaultValue: '1.0.0', description: 'Who should I say hello to?')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "Hello ${params.version}"
+            }
+        }
+    }
     stages {
         stage('Get version'){
             steps{
@@ -14,6 +24,7 @@ pipeline {
                 }
             }
         }
+    
         // stage('Install Dependencies') {
         //     steps {
         //         sh 'npm install'
