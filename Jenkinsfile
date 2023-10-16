@@ -1,5 +1,19 @@
 pipeline {
     agent { node { label 'AGENT-1'} }
+    environment{
+        //here if you create any variable you will have global access, since it is environment no need of def
+        packageVersion = ''
+    }
+    stages {
+        stage('Get version'){
+            steps{
+                script{
+                    def packageJson = readJSON(file: 'package.json')
+                    packageVersion = packageJson.version
+                    echo "version: ${packageVersion}"
+                }
+            }
+        }
     stages {
         stage('Install Dependencies') {
             steps {
@@ -25,25 +39,25 @@ pipeline {
                 sh 'zip -r catalogue.zip ./* --exclude=.git --exclude=.zip'
             }
         }
-        stage('publish artifact'){
-            steps {
-                 nexusArtifactUploader(
-                    nexusVersion: 'nexus3',
-                    protocol: 'http',
-                    nexusUrl: '52.87.248.172:8081/',
-                    groupId: 'com.roboshop',
-                    version: '1.0.9',
-                    repository: 'catalogue',
-                    credentialsId: 'nexus-auth',
-                    artifacts: [
-                        [artifactId: 'catalogue',
-                         classifier: '',
-                         file: 'catalogue.zip',
-                         type: 'zip']
-                    ]
-                 )
-            }
-        }
+        // stage('publish artifact'){
+        //     steps {
+        //          nexusArtifactUploader(
+        //             nexusVersion: 'nexus3',
+        //             protocol: 'http',
+        //             nexusUrl: '52.87.248.172:8081/',
+        //             groupId: 'com.roboshop',
+        //             version: '1.0.9',
+        //             repository: 'catalogue',
+        //             credentialsId: 'nexus-auth',
+        //             artifacts: [
+        //                 [artifactId: 'catalogue',
+        //                  classifier: '',
+        //                  file: 'catalogue.zip',
+        //                  type: 'zip']
+        //             ]
+        //          )
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
