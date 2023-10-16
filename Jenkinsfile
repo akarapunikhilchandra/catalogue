@@ -58,6 +58,12 @@ pipeline {
         //     }
         // }
 
+        stage('SAST') {
+            steps {
+                echo "SAST DONE"
+                echo "package version: $packageVersion"
+            }
+        }
         stage('Deploy') {
             steps {
                 echo "Deployment"
