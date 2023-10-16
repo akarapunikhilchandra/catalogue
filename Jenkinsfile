@@ -69,7 +69,7 @@ pipeline {
                 echo "Deployment"
             }
         }
-    }
+   
         // stage('deploy') {
         //     steps {
         //         echo "deployment"
@@ -83,7 +83,7 @@ pipeline {
             }
         }
     
-
+    }
     post{
         always{
             echo 'cleaning up workspace'
