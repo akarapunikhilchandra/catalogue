@@ -79,7 +79,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deployment"
-                build job: "../catelogue-deploy", wait: true
+                build job: "../catalogue-deploy", wait: true
             }
         }
     
