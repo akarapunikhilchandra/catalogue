@@ -14,11 +14,11 @@ pipeline {
                 }
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh 'npm install'
+        //     }
+        // }
 
         stage('Unit Test') {
             steps {
@@ -32,12 +32,12 @@ pipeline {
         //         sh 'sonar-scanner'
         //     }
         // }
-        stage('Build'){
-            steps {
-                sh 'ls -ltr'
-                sh 'zip -r catalogue.zip ./* --exclude=.git --exclude=.zip'
-            }
-        }
+        // stage('Build'){
+        //     steps {
+        //         sh 'ls -ltr'
+        //         sh 'zip -r catalogue.zip ./* --exclude=.git --exclude=.zip'
+        //     }
+        // }
         // stage('publish artifact'){
         //     steps {
         //          nexusArtifactUploader(
