@@ -70,6 +70,19 @@ pipeline {
             }
         }
     }
+        // stage('deploy') {
+        //     steps {
+        //         echo "deployment"
+        //             buildjob: "../catelogue-deploy",wait: true
+        //     }
+        // }
+        stage('Deploy') {
+            steps {
+                echo "Deployment"
+                build(job: '../catelogue-deploy', wait: true)
+            }
+        }
+    
 
     post{
         always{
