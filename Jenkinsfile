@@ -3,7 +3,7 @@
 @Library ('roboshop-shared-library') _
 
 def configMap = [
-    application: "nodeJSVM",
+    application: "JavaVM",
     component: "catalogue"
 ]
 
