@@ -10,7 +10,7 @@ env
 
 // this is .groovy file name and function inside it
 // pipelineDecission.decidePipeline(configMap)
-if ( ! env.BRANCH_NAME.equalsIgnoreCase('master')){
+if ( ! env.BRANCH_NAME.equalsIgnoreCase('main')){ 
     pipelineDecission.decidePipeline(configMap)
 }
 else{
